@@ -1,7 +1,6 @@
 package ru.arestov.arena;
 
 
-
 import ru.arestov.human.Human;
 import ru.arestov.human.HumanSay;
 
@@ -73,7 +72,7 @@ public class Arena implements ArenaInterface {
             humanList.get(PLAYER_ONE).hitSelection();
             System.out.println(s2);
 
-           // System.out.println(blockPlayerBot + " " + blockPlayerBot2);
+            // System.out.println(blockPlayerBot + " " + blockPlayerBot2);
 
             System.out.print(s + "Удар:  ");
             //метод ввода чисел и проверка на коректные числа
@@ -89,7 +88,7 @@ public class Arena implements ArenaInterface {
             //рандомное число удара для бота
             hitPlayerBot = random();
 
-           // System.out.println(hitPlayerBot);
+            // System.out.println(hitPlayerBot);
 
             System.out.print(s + "Блок левой рукой:   ");
             //ждем ввод чисел и проверка на коректные числа
@@ -112,18 +111,15 @@ public class Arena implements ArenaInterface {
             System.out.println(s + "Ничья");
     }
 
-    public void round(int hit, int bb, int bb2) throws  InterruptedException
-
-    {
+    public void round(int hit, int bb, int bb2) throws InterruptedException {
         //Имя и рандомный замах
         System.out.print(s + nameOne + say.list1.get(randomSay(say.list1.size())));
         //Игрок бьет Бота
-
         //если блокировал Бот
         if (hit == bb | hit == bb2) {
             System.out.println(say.list2.get(randomSay(say.list2.size())) + say.list5.get(hit));
             System.out.println(s + nameTwo + say.list3.get(randomSay(say.list3.size())) +
-                    say.list4.get(randomSay(say.list4.size())) );
+                    say.list4.get(randomSay(say.list4.size())));
             //если Игрок попал
         } else {
             System.out.println(say.list2.get(randomSay(say.list2.size())) + say.list5.get(hit));
@@ -133,14 +129,15 @@ public class Arena implements ArenaInterface {
         }
         Thread.sleep(4000);
     }
-        public void round2(int hitB, int bp, int bp2) throws InterruptedException {
+
+    public void round2(int hitB, int bp, int bp2) throws InterruptedException {
         //Бот бьет Игрока
         //Имя, замах
         System.out.print(s + nameTwo + say.list1.get(randomSay(say.list1.size())));
         //если блокировал Игрок
         if (hitB == bp | hitB == bp2) {
             System.out.println(say.list2.get(randomSay(say.list2.size())) + say.list5.get(hitB) + "\n" + s + nameOne + say.list3.get(randomSay(say.list3.size())) +
-                    say.list4.get(randomSay(say.list4.size())) );
+                    say.list4.get(randomSay(say.list4.size())));
             //если Бот попал
         } else {
             System.out.println(say.list2.get(randomSay(say.list2.size())) + say.list5.get(hitB));
