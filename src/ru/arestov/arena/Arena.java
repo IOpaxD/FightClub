@@ -1,4 +1,9 @@
-package ru.arestov;
+package ru.arestov.arena;
+
+
+
+import ru.arestov.human.Human;
+import ru.arestov.human.HumanSay;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -75,6 +80,9 @@ public class Arena implements ArenaInterface {
             hitPlayer = numberFormat();
 
             System.out.println(s2);
+            round(hitPlayer, blockPlayerBot, blockPlayerBot2);
+            System.out.println(s2);
+            Thread.sleep(1000);
             //вывод в консоль варианты блока для игрока
             humanList.get(PLAYER_ONE).blokSelection();
             System.out.println(s2);
@@ -93,7 +101,7 @@ public class Arena implements ArenaInterface {
 
             System.out.println(s2);
             //передаем полученые данные в метод
-            round(hitPlayer, blockPlayerBot, blockPlayerBot2, hitPlayerBot, blockPlayer, blockPlayer2);
+            round2(hitPlayerBot, blockPlayer, blockPlayer2);
         }
         //проверка кто выйграл
         if (healthOne > healthTwo)
@@ -104,44 +112,47 @@ public class Arena implements ArenaInterface {
             System.out.println(s + "Ничья");
     }
 
-    public void round(int hit, int bb, int bb2, int hitB, int bp, int bp2) throws IOException, InterruptedException {
+    public void round(int hit, int bb, int bb2) throws  InterruptedException
+
+    {
         //Имя и рандомный замах
         System.out.print(s + nameOne + say.list1.get(randomSay(say.list1.size())));
         //Игрок бьет Бота
+
         //если блокировал Бот
         if (hit == bb | hit == bb2) {
             System.out.println(say.list2.get(randomSay(say.list2.size())) + say.list5.get(hit));
             System.out.println(s + nameTwo + say.list3.get(randomSay(say.list3.size())) +
-                    say.list4.get(randomSay(say.list4.size())) + "\n");
+                    say.list4.get(randomSay(say.list4.size())) );
             //если Игрок попал
         } else {
             System.out.println(say.list2.get(randomSay(say.list2.size())) + say.list5.get(hit));
-            System.out.println(s + nameTwo + say.list6.get(randomSay(say.list6.size())) + say.list5.get(hit) + "\n");
+            System.out.println(s + nameTwo + say.list6.get(randomSay(say.list6.size())) + say.list5.get(hit));
             healthTwo -= 20;
 
         }
-        Thread.sleep(5000);
+        Thread.sleep(4000);
+    }
+        public void round2(int hitB, int bp, int bp2) throws InterruptedException {
         //Бот бьет Игрока
         //Имя, замах
         System.out.print(s + nameTwo + say.list1.get(randomSay(say.list1.size())));
         //если блокировал Игрок
         if (hitB == bp | hitB == bp2) {
             System.out.println(say.list2.get(randomSay(say.list2.size())) + say.list5.get(hitB) + "\n" + s + nameOne + say.list3.get(randomSay(say.list3.size())) +
-                    say.list4.get(randomSay(say.list4.size())) + "\n");
+                    say.list4.get(randomSay(say.list4.size())) );
             //если Бот попал
         } else {
             System.out.println(say.list2.get(randomSay(say.list2.size())) + say.list5.get(hitB));
-            System.out.println(s + nameOne + say.list6.get(randomSay(say.list6.size())) + say.list5.get(hitB) + "\n");
+            System.out.println(s + nameOne + say.list6.get(randomSay(say.list6.size())) + say.list5.get(hitB));
             healthOne -= 20;
-
-
         }
         System.out.println(s2);
-        Thread.sleep(3000);
+        Thread.sleep(4000);
         //Вывод хр игроков
         System.out.println(s + nameOne + " " + healthOne + " XP");
         System.out.println(s + nameTwo + " " + healthTwo + " XP");
-
+        Thread.sleep(1000);
 
     }
 
@@ -158,7 +169,7 @@ public class Arena implements ArenaInterface {
     }
 
     //проверка на ввод чисел
-    public static int numberFormat() {
+    public static int numberFormat() throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         int num;
         while (true) {
@@ -171,6 +182,7 @@ public class Arena implements ArenaInterface {
             } catch (NumberFormatException | IOException e) {
                 System.out.println(s + "Неверный формат");
             }
+            bufferedReader.close();
         }
         return num;
     }

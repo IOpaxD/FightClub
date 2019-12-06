@@ -1,5 +1,8 @@
 package ru.arestov;
 
+import ru.arestov.arena.Arena;
+import ru.arestov.human.Human;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -58,7 +61,7 @@ public class Main {
         System.out.println(s2);
 
         Human human2 = new Human(list.get(numb2 - 1));
-        System.out.println(s + "Выбран " + list.get(numb2 - 1) + s + "\n" + s2);
+        System.out.println(s + "Выбран(a) " + list.get(numb2 - 1) + s + "\n" + s2);
 
         arena = new Arena();
         arena.addList(human);

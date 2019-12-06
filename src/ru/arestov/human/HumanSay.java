@@ -1,16 +1,15 @@
-package ru.arestov;
+package ru.arestov.human;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class HumanSay {
-    List<String> list1 = new ArrayList<>();
-    List<String> list2 = new ArrayList<>();
-    List<String> list3 = new ArrayList<>();
-    List<String> list4 = new ArrayList<>();
-    List<String> list5 = new ArrayList<>();
-    List<String> list6 = new ArrayList<>();
+    public List<String> list1 = new ArrayList<>();
+    public List<String> list2 = new ArrayList<>();
+    public List<String> list3 = new ArrayList<>();
+    public List<String> list4 = new ArrayList<>();
+    public List<String> list5 = new ArrayList<>();
+    public List<String> list6 = new ArrayList<>();
 
     public List<String> listAdd(List<String> list, String s) {
         list.add(s);
@@ -93,6 +92,7 @@ public class HumanSay {
         listAdd(list6, "");
         listAdd(list6, " получает удар");
         listAdd(list6, " получает подачу");
+        listAdd(list6, " получает");
 
 
     }

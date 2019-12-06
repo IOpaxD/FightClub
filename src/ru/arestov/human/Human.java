@@ -1,4 +1,4 @@
-package ru.arestov;
+package ru.arestov.human;
 
 
 

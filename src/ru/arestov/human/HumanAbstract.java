@@ -1,4 +1,6 @@
-package ru.arestov;
+package ru.arestov.human;
+import ru.arestov.arena.Arena;
+
 import java.util.Random;
 
 public class HumanAbstract {
