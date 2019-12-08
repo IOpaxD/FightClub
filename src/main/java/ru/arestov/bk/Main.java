@@ -10,10 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static ru.arestov.bk.Constant.*;
+import static ru.arestov.bk.Constant.S;
+import static ru.arestov.bk.Constant.S2;
 
 public class Main {
-    static Logger log = LogManager.getLogger("1");
+    static Logger log = LogManager.getLogger("Main");
 
     public static void main(String[] args) throws IOException, InterruptedException {
         log.info("Начало работы программы");
@@ -32,7 +33,8 @@ public class Main {
 
         System.out.printf("%s\n Добро пожаловать в Fight club\n%s\n", S2, S2);
         System.out.printf("%sВыберите режим игры: \n\n(%d) Авторежим   %s(%d) Ручной режим\n%s\n", S, 1, S, 2, S2);
-        if (inputNumb(reader) == 1)
+        if (inputNumbAuto(reader) == 1)
+            log.info("Авторежим включен");
             Arena.autoFight = true;
 
         System.out.printf("%sВыберите игрока\n%s\n", S, S2);
@@ -40,6 +42,7 @@ public class Main {
 
         Human human = new Human(list.get(inputNumb(reader)));
         System.out.printf("%sВыбран(а) %s\n%s\n", S, human.getName(), S2);
+
 
         Thread.sleep(2000);
 
@@ -56,7 +59,6 @@ public class Main {
         reader.close();
     }
 
-
     public static void printList(List<String> list) {
         int j;
         for (int i = 1; i < list.size() - 1; i++) {
@@ -72,11 +74,13 @@ public class Main {
         if (Arena.autoFight) {
             Random random = new Random();
             i = 1 + random.nextInt(9 - 1);
+            log.debug("рандомное значение: {}",i);
         } else {
             while (true) {
                 System.out.printf("%sВведите число:  ", S);
                 try {
                     i = Integer.parseInt(reader.readLine());
+                    log.debug("нажата клавиша  {}",i);
                     if (i > 0 && i < 9) {
                         break;
                     } else
@@ -87,6 +91,7 @@ public class Main {
             }
         }
         return i;
+
     }
 
     public static int inputNumbAuto(BufferedReader reader) throws IOException {
@@ -95,6 +100,7 @@ public class Main {
             System.out.printf("%sВведите число:  ", S);
             try {
                 i = Integer.parseInt(reader.readLine());
+
                 if (i > 0 && i < 3) {
                     break;
                 } else
@@ -103,6 +109,7 @@ public class Main {
                 System.out.printf("%sНеверный формат\n", S);
             }
         }
+        log.debug("нажата клавиша  {}",i);
         return i;
     }
 

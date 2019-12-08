@@ -1,26 +1,28 @@
 package ru.arestov.bk;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
-import java.util.logging.LogManager;
-import java.util.logging.Logger;
 
 import static ru.arestov.bk.Constant.*;
 
 public class Arena {
+    private static Logger log = LogManager.getLogger("Арена");
 
     static boolean autoFight = false;
     private static int count = 1;
     private static Scanner in;
 
-
     private List<Human> humanList = new ArrayList<>();
 
     public void addList(Human human) {
         humanList.add(human);
+        log.info("Добавлен(а) {} в humanList",human);
     }
 
     public void start() throws InterruptedException, IOException {
@@ -29,14 +31,14 @@ public class Arena {
         System.out.printf("%sБой начнется через\n", S);
 
         for (int i = 3; i > 0; i--) {
-            System.out.printf("%s%d.... ", S, i);
-            Thread.sleep(1500);
+            System.out.printf("%s%d............. \n", S, i);
+            Thread.sleep(1000);
         }
         fight(humanList.get(PLAYER), humanList.get(BOT));
     }
 
     private void fight(Human player, Human bot) throws IOException, InterruptedException {
-
+        log.info("Начало боя");
         while (player.getHealth() > 0 & bot.getHealth() > 0) {
 
             if (count % 2 == 1) {
@@ -46,7 +48,6 @@ public class Arena {
                     round(player.random(), bot.random(), bot.random(), player, bot);
                 else
                     round(player.inputNumb(count), bot.random(), bot.random(), player, bot);
-
             } else {
                 player.printBlock();
                 if (autoFight)
@@ -68,15 +69,20 @@ public class Arena {
 
     private void round(int hit, int block, int block2, Human attack, Human protecting) throws InterruptedException {
 
+        log.debug("{} удар ({}){}",attack,hit,readFile(TEXT5,hit));
+        log.debug("{} блок ({}){} блок ({}){}",protecting,block, readFile(TEXT5,block),block2,readFile(TEXT5,block2));
+
         System.out.printf("%s\n%s%s%s", S2, S, attack.getName(), readFile(TEXT1, 0));
 
         if (hit == block | hit == block2) {
             System.out.printf("%s%s\n%s%s%s%s\n%s\n", readFile(TEXT2, 0), readFile(TEXT5, hit),
                     S, protecting.getName(), readFile(TEXT3, 0), readFile(TEXT4, 0), S2);
+            log.info("{} промах по {}",attack,protecting);
         } else {
             System.out.printf("%s%s\n%s%s%s%s\n%s\n", readFile(TEXT2, 0), readFile(TEXT5, hit),
                     S, protecting.getName(), readFile(TEXT6, 0), readFile(TEXT5, hit), S2);
             protecting.setHealth(protecting.getHealth() - 20);
+            log.info("{} попал по {}",attack,protecting);
         }
         Thread.sleep(4000);
 
