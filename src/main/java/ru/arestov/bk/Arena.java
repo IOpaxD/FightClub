@@ -97,7 +97,7 @@ public class Arena {
     private static String readFile(String fileName, int i) {
 
         List<String> list = new ArrayList<>();
-        String s = "src\\main\\resources\\text\\" + fileName + ".txt";
+        String s = "src/main/resources/text/" + fileName + ".txt";
 
         try {
             in = new Scanner(new File(s));

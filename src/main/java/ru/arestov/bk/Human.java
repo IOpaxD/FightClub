@@ -56,6 +56,7 @@ public class Human {
             try {
                 num = Integer.parseInt(bufferedReader.readLine());
 
+
                 if (num > 0 && num < 6) {
                     break;
                 } else
@@ -65,6 +66,7 @@ public class Human {
             }
         }
         log.debug("нажата клавиша  {}", num);
+        System.out.println(S2);
         return num;
     }
 

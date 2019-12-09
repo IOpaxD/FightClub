@@ -33,9 +33,10 @@ public class Main {
 
         System.out.printf("%s\n Добро пожаловать в Fight club\n%s\n", S2, S2);
         System.out.printf("%sВыберите режим игры: \n\n(%d) Авторежим   %s(%d) Ручной режим\n%s\n", S, 1, S, 2, S2);
-        if (inputNumbAuto(reader) == 1)
+        if (inputNumbAuto(reader) == 1) {
             log.info("Авторежим включен");
             Arena.autoFight = true;
+        }
 
         System.out.printf("%sВыберите игрока\n%s\n", S, S2);
         printList(list);
@@ -74,13 +75,13 @@ public class Main {
         if (Arena.autoFight) {
             Random random = new Random();
             i = 1 + random.nextInt(9 - 1);
-            log.debug("рандомное значение: {}",i);
+            log.debug("рандомное значение: {}", i);
         } else {
             while (true) {
                 System.out.printf("%sВведите число:  ", S);
                 try {
                     i = Integer.parseInt(reader.readLine());
-                    log.debug("нажата клавиша  {}",i);
+                    log.debug("нажата клавиша  {}", i);
                     if (i > 0 && i < 9) {
                         break;
                     } else
@@ -109,7 +110,7 @@ public class Main {
                 System.out.printf("%sНеверный формат\n", S);
             }
         }
-        log.debug("нажата клавиша  {}",i);
+        log.debug("нажата клавиша  {}", i);
         return i;
     }
 
