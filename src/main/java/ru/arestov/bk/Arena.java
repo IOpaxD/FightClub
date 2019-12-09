@@ -72,7 +72,7 @@ public class Arena {
         log.debug("{} удар ({}){}",attack,hit,readFile(TEXT5,hit));
         log.debug("{} блок ({}){} блок ({}){}",protecting,block, readFile(TEXT5,block),block2,readFile(TEXT5,block2));
 
-        System.out.printf("%s\n%s%s%s", S2, S, attack.getName(), readFile(TEXT1, 0));
+        System.out.printf("%s%s%s", S, attack.getName(), readFile(TEXT1, 0));
 
         if (hit == block | hit == block2) {
             System.out.printf("%s%s\n%s%s%s%s\n%s\n", readFile(TEXT2, 0), readFile(TEXT5, hit),
@@ -97,7 +97,7 @@ public class Arena {
     private static String readFile(String fileName, int i) {
 
         List<String> list = new ArrayList<>();
-        String s = "src/main/resources/text/" + fileName + ".txt";
+        String s = "src\\main\\resources\\text\\" + fileName + ".txt";
 
         try {
             in = new Scanner(new File(s));
